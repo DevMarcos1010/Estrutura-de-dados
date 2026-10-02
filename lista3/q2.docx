@@ -1,0 +1,10 @@
+Questão 2
+
+(a) Compila - declaração de um ponteiro para tipo incompleto 
+(b) Não compila - compilador não conhece o tamanho de Ponto para alocar 'p' na stack
+(c) Compila - usa corretamente a assinatura da função descrita no contrato (ponto.h)
+(d) Compila - equivalente a (*p).x; acessa corretamente o campo do TAD através do ponteiro p (se não houver conflito nas declarações 'a' e 'b')
+(e) Compila - cria um ponteiro para uma região de memória no heap de tamanho 10x o ponteiro opaco para Ponto (8 bytes)
+(f) Compila - printa o tamanho do ponteiro opaco para Ponto (8 bytes)
+(g) Não compila - compilador não conhece o tamanho do TAD de Ponto
+(h) Não compila - não existe região de memória no stack alocando 'p' (Ponto p;), portanto, não há endereço de memória para ser atribuído ao ponteiro opaco *q 

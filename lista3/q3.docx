@@ -1,0 +1,5 @@
+Questão 3
+
+(a) O compilador iria levantar erro. Ponto é um tipo abstrato de dados opaco, ou seja, o compilador não conhece o tamanho de Ponto e seus campos. Dessa maneira, main.c não saberia como alocar o retorno da função corretamente quando criarPonto() tentasse retornar Ponto por valor.
+
+(b) Para que o retorno por valor de criarPonto() pudesse funcionar corretamente, alterando ponto.h, haveria de abrir mão do encapsulamento do TAD, uma vez que, para o retorno por valor de Ponto funcionar, o compilador deve conhecer o tamanho de Ponto e seus campos, para assim alocá-los na memória no momento do retorno da função. 

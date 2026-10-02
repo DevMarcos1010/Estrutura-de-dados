@@ -1,0 +1,3 @@
+Questão 1
+
+A linha 'typedef struct ponto Ponto;' produz encapsulamento pois possui uma ocultação das operações e dados contidos internamente às funções e às estruturas de dados declaradas dentro de 'ponto.c' (o qual 'ponto.h' referencia), por meio de um tipo abstrato de dados (TAD). Dessa maneira, 'ponto.h' cria uma interface entre 'ponto.c' e o código do cliente por meio de um contrato que especifica as funções, seus parâmetros e retornos, sem entregar a implementação interna delas em 'ponto.c'. 
