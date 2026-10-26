@@ -14,6 +14,13 @@ Lista* cria_lista(void);
 // funções implementadas pela Lista 
 
 void imprime_lista(Lista *li);
+int maior_matricula(Lista* li, int *mat);
+int conta_aprovados(Lista *li);
+int busca_ciclica(Lista *li, int k, struct aluno *al);
+int remove_lista_pos(Lista* li, int pos);
+int rotaciona_lista(Lista* li, int k);
+int concatena_listas(Lista* li1, Lista* li2);
+int josephus(Lista* li, int k, int *sobrevivente);
 
 // as outras funções
 

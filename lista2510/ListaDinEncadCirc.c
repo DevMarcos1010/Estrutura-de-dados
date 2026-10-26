@@ -27,28 +27,29 @@ typedef struct elemento Elem;
 /* --- Implementação das funções da Lista -------------------- */
 
 // Q1
-void imprime_lista(Lista* li) {
+void imprime_lista(Lista *li) {
+    if(li == NULL || *li == NULL) return;
     Elem *no = *li; 
 
     do {
         printf("%d ", no->dados.matricula);
         no = no->prox;
 
-    } while(no->prox == *li);
-    println("");
+    } while(no->prox != *li);
+    printf("\n");
 }
 
 // Q2
 int maior_matricula(Lista* li, int *mat) {
     Elem *no = *li;
-    *mat = NULL;
+    *mat = 0;
 
     do {
         if(no->dados.matricula > *mat)  *mat = no->dados.matricula; 
 
-    }while(no->prox == li);
+    }while(no->prox == *li);
 
-    if(*mat != NULL) return 1;
+    if(mat != 0) return 1;
 
     return 0;
 }
@@ -65,7 +66,7 @@ int conta_aprovados(Lista* li){
     int cont = 0;
     Elem *no = *li;
 
-    while(no != NULL){
+    while(no->prox != *li){
         float media = (no->dados.n1 + no->dados.n2 + no->dados.n3) / 3;
         if(media >= 7.0)
             cont++;
@@ -91,6 +92,7 @@ int busca_ciclica(Lista* li, int k, struct aluno *al){
     }
 
     *al = no->dados;
+    return 1;
 }
 
 // Q5
@@ -99,7 +101,7 @@ int remove_lista_pos(Lista* li, int pos) {
     int n =  tamanho_lista(li);
     int counter = 0;
     if(pos > n) return 0;
-    Elem *aux, *no = li;
+    Elem *aux = *li, *no = *li;
 
     do {
         if(pos == 1) remove_lista_inicio(li);
@@ -110,8 +112,7 @@ int remove_lista_pos(Lista* li, int pos) {
 
     }while(no->prox == *li || counter == pos);
 
-    aux = no;
-    no = no->prox;
+    aux->prox = no->prox;
     free(no);
 
     return 1;
@@ -155,23 +156,48 @@ int concatena_listas(Lista* li1, Lista* li2) {
 
     do {
         no1 = no1->prox;
-    } while(no1->prox != li1);
+    } while(no1->prox != *li1);
 
     do {
         no2 = no2->prox;
-    } while(no2->prox != li2);
+    } while(no2->prox != *li2);
 
     no1->prox = *li2;
     no2->prox = *li1;
 
     *li2 = NULL;
+    return 1;
 }
 
 // pergunta 1) Caso a representação da lista armazenasse o final da lista em *li, o custo dessa operação de concatenação seria O(1)
 
 // Q8
 int josephus(Lista* li, int k, int *sobrevivente) {
-    if(li == NULL || *li == NULL || )
+    if(li == NULL || *li == NULL) return 0;
+    int len = tamanho_lista(li);
+    Elem *ant = *li;
+    Elem *no = *li;
+
+    while(ant->prox != ant) {
+        for(int i = 0; i < len; i++) {
+            if(i == k) {
+                ant->prox = no->prox;
+                if(no == *li) *li = no->prox; 
+                free(no); 
+                no = ant->prox;
+                break;
+            }
+
+            ant = no;
+            no = no->prox;
+        }
+    }
+
+    *sobrevivente = no->dados.matricula;
+    free(no);
+    *li = NULL;
+
+    return 1;
 }
 
 /* --- criacao e destruicao ---------------------------------- */
